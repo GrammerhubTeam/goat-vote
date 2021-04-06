@@ -14,14 +14,17 @@ import {
 import { AddIcon, MinusIcon } from '@chakra-ui/icons'
 
 export default function Create() {
-  const [timerDays, setTimerDays] = useState(0)
-  const [timerHours, setTimerHours] = useState(0)
-  const [timerMinutes, setTimerMinutes] = useState(0)
-  const [timerSeconds, setTimerSeconds] = useState(0)
-
   const [timerLength, setTimerLength] = useState(0)
+  const [pollChoices, setPollChoices] = useState([])
 
   // Handle timer
+  const handleTimerInput = (amount) => {
+    if (timerLength + amount < 0) {
+      setTimerLength(0)
+    } else {
+      setTimerLength(timerLength + amount)
+    }
+  }
 
   return (
     <>
@@ -34,26 +37,43 @@ export default function Create() {
         <Stack spacing={4} direction='row' align='center'>
           <ButtonGroup size='md' isAttached>
             <Button>1 Day</Button>
-            <IconButton aria-label='Add days' icon={<AddIcon />} />
-            <IconButton aria-label='Subtract days' icon={<MinusIcon />} />
+            <IconButton
+              aria-label='Add days'
+              onClick={() => handleTimerInput(1000 * 60 * 60 * 24)}
+              icon={<AddIcon />}
+            />
+            <IconButton
+              aria-label='Subtract days'
+              onClick={() => handleTimerInput(-1000 * 60 * 60 * 24)}
+              icon={<MinusIcon />}
+            />
           </ButtonGroup>
           <ButtonGroup size='md' isAttached>
             <Button>1 Hour</Button>
-            <IconButton aria-label='Add hours' icon={<AddIcon />} />
-            <IconButton aria-label='Subtract hours' icon={<MinusIcon />} />
+            <IconButton aria-label='Add hours' onClick={() => handleTimerInput(1000 * 60 * 60)} icon={<AddIcon />} />
+            <IconButton
+              aria-label='Subtract hours'
+              onClick={() => handleTimerInput(-1000 * 60 * 60)}
+              icon={<MinusIcon />}
+            />
           </ButtonGroup>
           <ButtonGroup size='md' isAttached>
             <Button>1 Minute</Button>
-            <IconButton aria-label='Add minutes' icon={<AddIcon />} />
-            <IconButton aria-label='Subtract minutes' icon={<MinusIcon />} />
+            <IconButton aria-label='Add minutes' onClick={() => handleTimerInput(1000 * 60)} icon={<AddIcon />} />
+            <IconButton
+              aria-label='Subtract minutes'
+              onClick={() => handleTimerInput(-1000 * 60)}
+              icon={<MinusIcon />}
+            />
           </ButtonGroup>
           <ButtonGroup size='md' isAttached>
             <Button>1 Second</Button>
-            <IconButton aria-label='Add seconds' icon={<AddIcon />} />
-            <IconButton aria-label='Subtract seconds' icon={<MinusIcon />} />
+            <IconButton aria-label='Add seconds' onClick={() => handleTimerInput(1000)} icon={<AddIcon />} />
+            <IconButton aria-label='Subtract seconds' onClick={() => handleTimerInput(-1000)} icon={<MinusIcon />} />
           </ButtonGroup>
         </Stack>
-        <Box bg='green'>{timerLength}</Box>
+        <Box bg='yellow'>{timerLength / 1000}</Box>
+        {/* ADD a timer display */}
         <FormControl id='choices'>
           {/* How do we add choices dynamically? */}
 
