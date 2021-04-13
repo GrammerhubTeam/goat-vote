@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import TimeDisplay from '../components/TimeDisplay'
+
 import {
   Heading,
   Stack,
@@ -15,7 +17,7 @@ import { AddIcon, MinusIcon } from '@chakra-ui/icons'
 
 export default function Create() {
   const [timerLength, setTimerLength] = useState(0)
-  const [pollChoices, setPollChoices] = useState([])
+  const [choices, setChoices] = useState([])
 
   // Handle timer
   const handleTimerInput = (amount) => {
@@ -23,6 +25,14 @@ export default function Create() {
       setTimerLength(0)
     } else {
       setTimerLength(timerLength + amount)
+    }
+  }
+
+  //Handle input choice
+  const handleChoiceInput = (event) => {
+    if (event.key === 'Enter') {
+      setChoices([...choices, event.target.value])
+      event.target.value = ''
     }
   }
 
@@ -72,16 +82,18 @@ export default function Create() {
             <IconButton aria-label='Subtract seconds' onClick={() => handleTimerInput(-1000)} icon={<MinusIcon />} />
           </ButtonGroup>
         </Stack>
-        <Box bg='yellow'>{timerLength / 1000}</Box>
-        {/* ADD a timer display */}
+        <Box bg='yellow'>
+          <TimeDisplay milliseconds={timerLength} />
+        </Box>
         <FormControl id='choices'>
-          {/* How do we add choices dynamically? */}
-
           <FormLabel>What are the choices?</FormLabel>
-          <Input type='text' />
-          <Input type='text' />
-          <Input type='text' />
-          <Input type='text' />
+          <Input type='text' onKeyDown={handleChoiceInput} />
+          <ol>
+            {choices.map((choice, index) => (
+              <li key={index}>{choice}</li>
+            ))}
+          </ol>
+          {/* Add remove functionality to choices */}
         </FormControl>
 
         <Button colorScheme='red'>Submit</Button>
