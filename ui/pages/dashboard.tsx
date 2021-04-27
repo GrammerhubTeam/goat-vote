@@ -8,6 +8,7 @@ export default function Dashboard() {
   return (
     <>
       <CurrentPolls />
+      <hr />
       <YourPolls />
     </>
   )

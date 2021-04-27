@@ -1,13 +1,16 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Box, HStack } from '@chakra-ui/react'
+import TimeDisplay from './TimeDisplay'
 
-function PollView({ topic, timerLength, choices, createdAt }) {
+function PollView(item) {
+  const [countdown, setCountdown] = useState(0)
+
   return (
-    <Box>
+    <Box key={item.id} bg='gray.300' w='100%'>
       <HStack>
-        {topic}
-        {choices}
-        Timer
+        <div>{item.topic}</div>
+        <div>{item.choices.map((choice) => choice + ' ')}</div>
+        <TimeDisplay milliseconds={countdown} />
       </HStack>
     </Box>
   )
