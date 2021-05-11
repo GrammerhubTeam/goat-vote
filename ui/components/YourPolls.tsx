@@ -5,7 +5,7 @@ import PollView from './PollView'
 function YourPolls() {
   const [data, setData] = useState([])
   const user = 99
-
+ 
   useEffect(() => {
     const getData = async()=>{
 
@@ -15,7 +15,6 @@ function YourPolls() {
     }
     getData()
   }, [])
-
   return (
     <Container>
       <h2>Your Polls</h2>
