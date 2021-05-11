@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TimeDisplay from '../components/TimeDisplay'
 
 import {
@@ -16,8 +16,13 @@ import {
 import { AddIcon, MinusIcon } from '@chakra-ui/icons'
 
 export default function Create() {
+  const [topic, setTopic] = useState('')
   const [timerLength, setTimerLength] = useState(0)
   const [choices, setChoices] = useState([])
+
+  // useEffect(() => {
+  //   console.log(topic)
+  // }, [topic])
 
   // Handle timer
   const handleTimerInput = (amount) => {
@@ -36,15 +41,19 @@ export default function Create() {
     }
   }
 
+  const handleSubmit = () => {
+    // send state to database and redirect to dashboard page
+  }
+
   return (
     <>
       <Container>
         <FormControl id='what'>
           <FormLabel>What is this poll about?</FormLabel>
-          <Input type='text' />
+          <Input type='text' onKeyUp={(e) => setTopic(e.target.value)} />
         </FormControl>
         <FormLabel>Set timer for poll</FormLabel>
-        <Stack spacing={4} direction='row' align='center'>
+        <Stack spacing={4} direction='column' align='center'>
           <ButtonGroup size='md' isAttached>
             <Button>1 Day</Button>
             <IconButton
@@ -96,7 +105,9 @@ export default function Create() {
           {/* Add remove functionality to choices */}
         </FormControl>
 
-        <Button colorScheme='red'>Submit</Button>
+        <Button colorScheme='red' onClick={handleSubmit}>
+          Submit
+        </Button>
 
         {/* Get link to share */}
       </Container>
