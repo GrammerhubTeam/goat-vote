@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Box, HStack } from '@chakra-ui/react'
 import TimeDisplay from './TimeDisplay'
-import  Link  from 'next/Link'
+import  Link  from 'next/link'
 
 function PollView(item) {
   const [countdown, setCountdown] = useState(0)
