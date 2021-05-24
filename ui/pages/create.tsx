@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import TimeDisplay from '../components/TimeDisplay'
+import {useRouter} from "next/router"
 
 import {
   Heading,
@@ -19,6 +20,9 @@ export default function Create() {
   const [topic, setTopic] = useState('')
   const [timerLength, setTimerLength] = useState(0)
   const [choices, setChoices] = useState([])
+  const router = useRouter()
+  const id = router.query.id || null
+  console.log(router.query)
 
   // useEffect(() => {
   //   console.log(topic)
