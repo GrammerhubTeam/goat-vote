@@ -5,6 +5,7 @@ import { AppProps } from 'next/app'
 import AppContext, { IAppContext } from '../state/AppContext'
 import { useState } from 'react'
 import Layout from '../components/Layout/layout'
+import { PollWrapper } from '../context/polls'
 
 function App({ Component, pageProps }: AppProps) {
   const [openedMenu, setOpenedMenu] = useState<boolean>(true)
@@ -22,9 +23,11 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <AppContext.Provider value={initialState}>
+        <PollWrapper>
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        </PollWrapper>
       </AppContext.Provider>
     </ChakraProvider>
   )

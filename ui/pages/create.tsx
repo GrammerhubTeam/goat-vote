@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import TimeDisplay from '../components/TimeDisplay'
 import {useRouter} from "next/router"
+import { usePollContext } from '../context/polls'
+
 
 import {
   Heading,
@@ -17,17 +19,20 @@ import {
 import { AddIcon, MinusIcon, DeleteIcon, } from '@chakra-ui/icons'
 
 export default function Create() {
+  const { state  }= usePollContext()
   const [topic, setTopic] = useState('')
   const [timerLength, setTimerLength] = useState(10000)
   const [choices, setChoices] = useState([])
   const router = useRouter()
   const id = router.query.id || null
-  console.log(router.query)
-
-  // useEffect(() => {
-  //   console.log(topic)
-  // }, [topic])
-
+ useEffect(() => {
+  if(id) {
+    const currentResult = state.filter((poll)=>poll.id.toString() === id)
+    setChoices(currentResult.choices)
+    setTimerLength(currentResult.timerLength)
+    setTopic(currentResult.topic)
+  }
+}, [])
   // Handle timer
   const handleTimerInput = (amount) => {
     if (timerLength + amount < 0) {
@@ -127,7 +132,7 @@ export default function Create() {
           <FormLabel>What are the choices?</FormLabel>
           <Input type="text" onKeyDown={handleChoiceInput} />
           <ol>
-            {choices.map((choice, index) => (
+            {choices?.map((choice, index) => (
               <li key={index}>
                 {choice}
                 <IconButton
