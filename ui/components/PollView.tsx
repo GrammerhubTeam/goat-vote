@@ -7,7 +7,7 @@ function PollView(item) {
   const [countdown, setCountdown] = useState(0)
 
   return (
-    <Link href='/create'>
+    <Link href={`/create?id=${item.id}`}>
       <Box key={item.id} bg='gray.300' w='100%'>
         <HStack>
           <div>{item.topic}</div>
