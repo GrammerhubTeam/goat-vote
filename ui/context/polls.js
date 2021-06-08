@@ -1,13 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 
-const AppContext = createContext()
+const PollContext = createContext()
 
-export function AppWrapper({ children }) {
+export function PollWrapper({ children }) {
     const [ state, setState ] = useState([])
     useEffect(() => {
         const fetchData = async () => {
             const result = await fetch('data.json').then((res) => res.json())
-            console.log('fetching data from context', result)
+            // console.log('fetching data from context', result)
             setState(result)
         }
         fetchData()
@@ -15,12 +15,12 @@ export function AppWrapper({ children }) {
 
   
     return (
-      <AppContext.Provider value={{ state }}>
+      <PollContext.Provider value={{ state }}>
         {children}
-      </AppContext.Provider>
+      </PollContext.Provider>
     )
   }
   
-  export function useAppContext() {
-    return useContext(AppContext)
-  }
+  export function usePollContext() {
+ return useContext(PollContext)
+}
