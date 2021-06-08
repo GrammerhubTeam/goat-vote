@@ -19,20 +19,34 @@ import {
 import { AddIcon, MinusIcon, DeleteIcon, } from '@chakra-ui/icons'
 
 export default function Create() {
-  const { state  }= usePollContext()
+  const {state} = usePollContext()
   const [topic, setTopic] = useState('')
-  const [timerLength, setTimerLength] = useState(10000)
+  const [timerLength, setTimerLength] = useState(0)
   const [choices, setChoices] = useState([])
   const router = useRouter()
-  const id = router.query.id || null
- useEffect(() => {
-  if(id) {
-    const currentResult = state.filter((poll)=>poll.id.toString() === id)
-    setChoices(currentResult.choices)
-    setTimerLength(currentResult.timerLength)
-    setTopic(currentResult.topic)
-  }
-}, [])
+  const [id, setId] = useState(null);
+  
+  useEffect(() => {
+    if(id) {
+      const currentResult = state.filter((poll) => poll.id.toString() == id)
+      console.warn('results: ', currentResult);
+
+      setChoices(currentResult[0].choices)
+      setTimerLength(currentResult[0].timerLength)
+      setTopic(currentResult[0].topic)
+    }
+  }, [id])
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    setId(router.query.id)
+    console.warn('id: ', id);
+    console.warn('state', state);
+    
+  }, [router.isReady])
+  
+  
   // Handle timer
   const handleTimerInput = (amount) => {
     if (timerLength + amount < 0) {
