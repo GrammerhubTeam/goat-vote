@@ -27,22 +27,20 @@ export default function Create() {
   const [id, setId] = useState(null);
   
   useEffect(() => {
-    if(id) {
-      const currentResult = state.filter((poll) => poll.id.toString() == id)
-      console.warn('results: ', currentResult);
+    if(id && state.length > 0) {
+      const currentResult = state.filter((poll) => poll.id.toString() === id.toString())
 
       setChoices(currentResult[0].choices)
       setTimerLength(currentResult[0].timerLength)
       setTopic(currentResult[0].topic)
     }
-  }, [id])
+  }, [id, state])
 
   useEffect(() => {
     if (!router.isReady) return;
 
     setId(router.query.id)
-    console.warn('id: ', id);
-    console.warn('state', state);
+    
     
   }, [router.isReady])
   
