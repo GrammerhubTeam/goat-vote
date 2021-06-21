@@ -1,22 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Container, VStack } from '@chakra-ui/react'
 import PollView from './PollView'
+import { usePollContext } from '../context/polls'
 
 function CurrentPolls() {
-  const [data, setData] = useState([])
-
-  useEffect(async () => {
-    const result = await fetch('data.json').then((res) => res.json())
-    setData(result)
-  }, [])
-
-  useEffect(() => {})
+  const {state} = usePollContext()
 
   return (
     <Container>
       <h2>Current Polls</h2>
       <VStack>
-        {data.map((item) => (
+        {state && state.map((item) => (
           <PollView {...item} />
         ))}
       </VStack>
