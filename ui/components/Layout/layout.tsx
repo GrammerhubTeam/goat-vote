@@ -9,30 +9,26 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppContext, { IAppContext } from '../../state/AppContext'
 import { useRouter } from 'next/dist/client/router'
 
-//https://dev.to/ozanbolel/layout-persistence-in-next-js-107g
+// https://dev.to/ozanbolel/layout-persistence-in-next-js-107g
 
 interface LayoutProps {
-  children: React.ReactNode,
-  theme?: 'dark' | 'light',
+  children: React.ReactNode
+  theme?: 'dark' | 'light'
 }
 
-
-export default function Layout({children, theme}: LayoutProps) {
-
-  const appState = React.useContext(AppContext);
-  const router = useRouter();
+export default function Layout ({ children, theme }: LayoutProps) {
+  const appState = React.useContext(AppContext)
+  const router = useRouter()
 
   return (
-    <Flex flexDirection="column" height="100%">
-      <Box flex="initial">
-        <Navbar bg="#00a65a" bgl="#5ADE8D"></Navbar>
+    <Flex flexDirection='column' height='100%'>
+      <Box flex='initial'>
+        <Navbar bg='#00a65a' bgl='#5ADE8D' />
       </Box>
-      <Box flex="auto" >
-        <Flex h="100%">
-          { appState.openedMenu ? <Sidenav ></Sidenav> : null }
-          <Box w="100%">
-            { children }
-          </Box>
+      <Box flex='auto'>
+        <Flex h='100%'>
+          {/* { appState.openedMenu ? <Sidenav ></Sidenav> : null } */}
+          <Box w='100%'>{children}</Box>
         </Flex>
       </Box>
     </Flex>

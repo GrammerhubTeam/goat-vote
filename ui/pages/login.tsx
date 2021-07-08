@@ -1,10 +1,9 @@
-import LoginComponent from "../components/Login/login";
+import LoginComponent from '../components/Login/login'
 
-
-export default function Login() {
+export default function Login () {
   return (
     <div>
-      <LoginComponent></LoginComponent>
+      <LoginComponent />
     </div>
   )
 }

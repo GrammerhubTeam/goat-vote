@@ -11,14 +11,14 @@ import {
   Stack,
   Checkbox,
   Button,
-  Link,
+  Link
 } from '@chakra-ui/react'
 import { EmailIcon, LockIcon } from '@chakra-ui/icons'
 import React from 'react'
 
-//TODO Validate maxlenght and type of inputs
-export default function LoginComponent() {
-  //let render: boolean = true;
+// TODO Validate maxlenght and type of inputs
+export default function LoginComponent () {
+  // let render: boolean = true;
   const [render, setRender] = React.useState(true)
 
   const clickMe = () => setRender(false)
@@ -39,7 +39,7 @@ export default function LoginComponent() {
           <FormLabel>Email address</FormLabel>
           <InputGroup>
             <Input type='email' />
-            <InputRightElement children={<EmailIcon />}></InputRightElement>
+            <InputRightElement children={<EmailIcon />} />
           </InputGroup>
           {/* <FormHelperText>Use your contact email to login or create new account.</FormHelperText> */}
         </FormControl>
@@ -47,7 +47,7 @@ export default function LoginComponent() {
           <FormLabel>Password</FormLabel>
           <InputGroup>
             <Input type='password' />
-            <InputRightElement children={<LockIcon />}></InputRightElement>
+            <InputRightElement children={<LockIcon />} />
           </InputGroup>
           {/* <FormHelperText>Use your existing password, or create a new one.</FormHelperText> */}
         </FormControl>
