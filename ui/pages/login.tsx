@@ -1,9 +1,20 @@
-import LoginComponent from '../components/Login/login'
+import { Divider } from '@chakra-ui/react';
 
-export default function Login () {
+import { Main } from '../components/Main';
+import { Container } from '../components/Container';
+import { DarkModeSwitch } from '../components/DarkModeSwitch';
+
+import CurrentPolls from '../components/CurrentPolls';
+import YourPolls from '../components/YourPolls';
+import Auth from '../components/Auth';
+
+export default function Login() {
   return (
-    <div>
-      <LoginComponent />
-    </div>
-  )
+    <Container h="100vh">
+      <Main>
+        <Auth />
+      </Main>
+      <DarkModeSwitch />
+    </Container>
+  );
 }

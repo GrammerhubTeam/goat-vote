@@ -9,7 +9,7 @@ import YourPolls from '../components/YourPolls';
 
 export default function Dashboard() {
   return (
-    <Container>
+    <Container h="100vh">
       <Main>
         <CurrentPolls />
         <Divider py="3vh" />

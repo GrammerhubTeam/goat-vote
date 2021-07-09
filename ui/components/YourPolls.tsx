@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { VStack } from '@chakra-ui/react';
 
-import { Container } from './Container';
 import PollView from './PollView';
 import { usePollContext } from '../context/polls';
 
@@ -10,7 +9,7 @@ function YourPolls() {
   const user = 99;
 
   return (
-    <Container>
+    <>
       <h2>Your Polls</h2>
       <VStack>
         {state
@@ -19,7 +18,7 @@ function YourPolls() {
             <PollView {...item} />
           ))}
       </VStack>
-    </Container>
+    </>
   );
 }
 
