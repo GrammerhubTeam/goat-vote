@@ -1,4 +1,4 @@
-import { Divider } from '@chakra-ui/react';
+import { Link as ChakraLink, Divider } from '@chakra-ui/react';
 
 import { Main } from '../components/Main';
 import { Container } from '../components/Container';
@@ -13,6 +13,9 @@ export default function Dashboard() {
       <Main>
         <CurrentPolls />
         <Divider py="3vh" />
+          <ChakraLink href="/create" flexGrow={1} mr={2}>
+            Create a New Poll
+          </ChakraLink>
         <YourPolls />
       </Main>
       <DarkModeSwitch />

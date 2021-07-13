@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:server": "json-server --watch public/data.json",
+    "dev:server": "json-server --watch public/data.json --port 8000",
     "build": "next build",
     "start": "next start"
   },
