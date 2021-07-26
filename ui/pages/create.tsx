@@ -75,7 +75,7 @@ export default function Create () {
           <Input
             value={topic}
             type='text'
-            onKeyUp={(e) => setTopic(e.target.value)}
+            onChange={(e) => setTopic(e.target.value)}
           />
         </FormControl>
         <FormLabel>Set timer for poll</FormLabel>
