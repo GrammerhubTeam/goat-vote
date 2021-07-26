@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import TimeDisplay from '../components/TimeDisplay'
+import { useRouter } from 'next/router'
+import { usePollContext } from '../context/polls'
 
 import {
   Heading,
@@ -11,18 +13,33 @@ import {
   Input,
   Button,
   ButtonGroup,
-  Box,
+  Box
 } from '@chakra-ui/react'
-import { AddIcon, MinusIcon } from '@chakra-ui/icons'
+import { AddIcon, MinusIcon, DeleteIcon } from '@chakra-ui/icons'
 
-export default function Create() {
+export default function Create () {
+  const { state } = usePollContext()
   const [topic, setTopic] = useState('')
   const [timerLength, setTimerLength] = useState(0)
   const [choices, setChoices] = useState([])
+  const router = useRouter()
+  const [id, setId] = useState(null)
 
-  // useEffect(() => {
-  //   console.log(topic)
-  // }, [topic])
+  useEffect(() => {
+    if (id && state.length > 0) {
+      const currentResult = state.filter((poll) => poll.id.toString() === id.toString())
+
+      setChoices(currentResult[0].choices)
+      setTimerLength(currentResult[0].timerLength)
+      setTopic(currentResult[0].topic)
+    }
+  }, [id, state])
+
+  useEffect(() => {
+    if (!router.isReady) return
+
+    setId(router.query.id)
+  }, [router.isReady])
 
   // Handle timer
   const handleTimerInput = (amount) => {
@@ -33,12 +50,17 @@ export default function Create() {
     }
   }
 
-  //Handle input choice
+  // Handle input choice
   const handleChoiceInput = (event) => {
     if (event.key === 'Enter') {
       setChoices([...choices, event.target.value])
       event.target.value = ''
     }
+  }
+
+  const deleteChoice = (choiceIndex) => {
+    const newChoices = choices.filter((target, index) => index !== choiceIndex)
+    setChoices(newChoices)
   }
 
   const handleSubmit = () => {
@@ -50,7 +72,11 @@ export default function Create() {
       <Container>
         <FormControl id='what'>
           <FormLabel>What is this poll about?</FormLabel>
-          <Input type='text' onKeyUp={(e) => setTopic(e.target.value)} />
+          <Input
+            value={topic}
+            type='text'
+            onKeyUp={(e) => setTopic(e.target.value)}
+          />
         </FormControl>
         <FormLabel>Set timer for poll</FormLabel>
         <Stack spacing={4} direction='column' align='center'>
@@ -69,7 +95,11 @@ export default function Create() {
           </ButtonGroup>
           <ButtonGroup size='md' isAttached>
             <Button>1 Hour</Button>
-            <IconButton aria-label='Add hours' onClick={() => handleTimerInput(1000 * 60 * 60)} icon={<AddIcon />} />
+            <IconButton
+              aria-label='Add hours'
+              onClick={() => handleTimerInput(1000 * 60 * 60)}
+              icon={<AddIcon />}
+            />
             <IconButton
               aria-label='Subtract hours'
               onClick={() => handleTimerInput(-1000 * 60 * 60)}
@@ -78,7 +108,11 @@ export default function Create() {
           </ButtonGroup>
           <ButtonGroup size='md' isAttached>
             <Button>1 Minute</Button>
-            <IconButton aria-label='Add minutes' onClick={() => handleTimerInput(1000 * 60)} icon={<AddIcon />} />
+            <IconButton
+              aria-label='Add minutes'
+              onClick={() => handleTimerInput(1000 * 60)}
+              icon={<AddIcon />}
+            />
             <IconButton
               aria-label='Subtract minutes'
               onClick={() => handleTimerInput(-1000 * 60)}
@@ -87,8 +121,16 @@ export default function Create() {
           </ButtonGroup>
           <ButtonGroup size='md' isAttached>
             <Button>1 Second</Button>
-            <IconButton aria-label='Add seconds' onClick={() => handleTimerInput(1000)} icon={<AddIcon />} />
-            <IconButton aria-label='Subtract seconds' onClick={() => handleTimerInput(-1000)} icon={<MinusIcon />} />
+            <IconButton
+              aria-label='Add seconds'
+              onClick={() => handleTimerInput(1000)}
+              icon={<AddIcon />}
+            />
+            <IconButton
+              aria-label='Subtract seconds'
+              onClick={() => handleTimerInput(-1000)}
+              icon={<MinusIcon />}
+            />
           </ButtonGroup>
         </Stack>
         <Box bg='yellow'>
@@ -98,8 +140,15 @@ export default function Create() {
           <FormLabel>What are the choices?</FormLabel>
           <Input type='text' onKeyDown={handleChoiceInput} />
           <ol>
-            {choices.map((choice, index) => (
-              <li key={index}>{choice}</li>
+            {choices?.map((choice, index) => (
+              <li key={index}>
+                {choice}
+                <IconButton
+                  aria-label='Search database'
+                  icon={<DeleteIcon />}
+                  onClick={() => deleteChoice(index)}
+                />
+              </li>
             ))}
           </ol>
           {/* Add remove functionality to choices */}
