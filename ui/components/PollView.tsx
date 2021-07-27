@@ -22,21 +22,6 @@ function PollView(item) {
     return () => clearInterval(countDownInterval);
   }, [countdown]);
 
-  // return (
-  //   <Link href={`/create?id=${item.id}`}>
-  //     <Table variant="simple" b="gray">
-  //       <Td w="10%">
-  //         <Box>{item.topic}</Box>
-  //       </Td>
-  //       <Td w="60%">
-  //         <Box>{item.choices.map((choice) => choice + ' ')}</Box>
-  //       </Td>
-  //       <Td w="30%">
-  //         <TimeDisplay milliseconds={countdown} />
-  //       </Td>
-  //     </Table>
-  //   </Link>
-  // );
   return (
     <Link href={`/create?id=${item.id}`} w="100%">
       <Grid
