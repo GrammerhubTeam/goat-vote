@@ -4,17 +4,33 @@ const PollContext = createContext()
 
 export function PollWrapper ({ children }) {
   const [state, setState] = useState([])
-  const fetchData = async () => {
-    const result = await fetch('http://localhost:8000/votes')
-      .then((res) => res.json())
-    setState(result)
-  }
+
   useEffect(() => {
     fetchData()
   }, [])
 
+  const fetchData = async () => {
+    const result = await fetch('http://localhost:8000/votes')
+      .then((res) => {
+        return res.json()
+      })
+    
+    setState(result)
+  }
+  const postData = async (data) => {
+    fetch('http://localhost:8000/votes', {
+      method: 'POST',
+      headers: {
+        "content-type": 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then((res) =>
+      console.log(res)
+    )
+  }
+
   return (
-    <PollContext.Provider value={{ state }}>
+    <PollContext.Provider value={{...state, postData}}>
       {children}
     </PollContext.Provider>
   )
