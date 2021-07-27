@@ -47,7 +47,7 @@ function PollView(item) {
       >
         <Box p="2">{item.topic}</Box>
         <Box py="2">{item.choices.map((choice) => choice + ' ')}</Box>
-        <TimeDisplay milliseconds={countdown} />
+        {/* <TimeDisplay milliseconds={countdown} /> */}
       </Grid>
     </Link>
   );
