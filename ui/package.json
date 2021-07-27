@@ -13,7 +13,7 @@
     "@chakra-ui/react": "^1.0.3",
     "@emotion/react": "^11.1.2",
     "@emotion/styled": "^11.0.0",
-    "create-next-app": "^10.0.9",
+    "framer-motion": "^4.1.13",
     "json-server": "^0.16.3",
     "next": "^10.0.0",
     "react": "16.13.1",
