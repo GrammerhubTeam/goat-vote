@@ -1,34 +1,16 @@
-{"votes": [
-  {
-    "id": 1,
-    "user_id": 99,
-    "topic": "test1",
-    "timerLength": 315000000,
-    "choices": ["App A", "App B", "App C"],
-    "createdAt": "Mon Jul 7 2021 19:45:25 GMT-0400 (Eastern Daylight Time)"
-  },
-  {
-    "id": 2,
-    "user_id": 45,
-    "topic": "test2",
-    "timerLength": 15000000,
-    "choices": ["Cat", "Dog", "Fish"],
-    "createdAt": "Mon Jul 7 2021 19:45:25 GMT-0400 (Eastern Daylight Time)"
-  },
-  {
-    "id": 3,
-    "user_id": 33,
-    "topic": "test3",
-    "timerLength": 5000000,
-    "choices": ["Blue", "Red", "Purple", "Green"],
-    "createdAt": "Mon Jul 7 2021 19:45:25 GMT-0400 (Eastern Daylight Time)"
-  },
-  {
-    "id": 4,
-    "user_id": 99,
-    "topic": "test4",
-    "timerLength": 5000000,
-    "choices": ["Baked Potato", "French Fries", "Tater Tots"],
-    "createdAt": "Mon Jul 7 2021 19:45:25 GMT-0400 (Eastern Daylight Time)"
-  }
-]}
+{
+  "votes": [
+    {
+      "topic": "Oui ouais",
+      "timerLength": 90061000,
+      "choices": [
+        "D'accord",
+        "Bye",
+        "No"
+      ],
+      "createdAt": "2021-07-27T00:21:15.243Z",
+      "user_id": 1,
+      "id": 1
+    }
+  ]
+}

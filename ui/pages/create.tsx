@@ -18,7 +18,7 @@ import {
 import { AddIcon, MinusIcon, DeleteIcon } from '@chakra-ui/icons'
 
 export default function Create () {
-  const { state } = usePollContext()
+  const { state, postData } = usePollContext()
   const [topic, setTopic] = useState('')
   const [timerLength, setTimerLength] = useState(0)
   const [choices, setChoices] = useState([])
@@ -65,6 +65,13 @@ export default function Create () {
 
   const handleSubmit = () => {
     // send state to database and redirect to dashboard page
+    postData({
+      topic,
+      timerLength,
+      choices,
+      createdAt: new Date(),
+      user_id: 1
+    })
   }
 
   return (
@@ -75,7 +82,7 @@ export default function Create () {
           <Input
             value={topic}
             type='text'
-            onKeyUp={(e) => setTopic(e.target.value)}
+            onChange={(e) => setTopic(e.target.value)}
           />
         </FormControl>
         <FormLabel>Set timer for poll</FormLabel>

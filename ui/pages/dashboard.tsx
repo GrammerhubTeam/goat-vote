@@ -5,7 +5,6 @@ import { Container } from '../components/Container';
 import { DarkModeSwitch } from '../components/DarkModeSwitch';
 
 import CurrentPolls from '../components/CurrentPolls';
-import YourPolls from '../components/YourPolls';
 
 export default function Dashboard() {
   return (
@@ -13,10 +12,9 @@ export default function Dashboard() {
       <Main>
         <CurrentPolls />
         <Divider py="3vh" />
-          <ChakraLink href="/create" flexGrow={1} mr={2}>
-            Create a New Poll
-          </ChakraLink>
-        <YourPolls />
+        <ChakraLink href="/create" flexGrow={1} mr={2}>
+          Create a New Poll
+        </ChakraLink>
       </Main>
       <DarkModeSwitch />
     </Container>
