@@ -30,7 +30,7 @@ export function PollWrapper ({ children }) {
   }
 
   return (
-    <PollContext.Provider value={{...state, postData}}>
+    <PollContext.Provider value={{ state, postData }}>
       {children}
     </PollContext.Provider>
   )
