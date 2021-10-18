@@ -29,7 +29,7 @@ If you spot a problem with the docs, [search if an issue already exists](https:/
 
 #### Solve an issue
 
-Scan through our [existing issues](https://github.com/GrammerhubTeam/blog-app-front-end/issues) to find one that interests you.
+Scan through our [existing issues](https://github.com/GrammerhubTeam/goat-vote/issues) to find one that interests you.
 
 ### Make Changes
 
